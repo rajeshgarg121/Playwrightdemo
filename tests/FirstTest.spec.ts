@@ -5,7 +5,7 @@ test('has title',{tag: '@smoke'}, async ({page}) => {
   const username = process.env.PLAYWRIGHT_USER;
   await page.goto('https://playwright.dev/');  
   console.log("user name is "+username);
-  await expect(page).toHaveTitle(/playwright/);
+  await expect(page).toHaveTitle(/playwright/i);
 });
 
 test('get started link', async ({page}) => {
