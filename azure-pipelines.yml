@@ -1,0 +1,49 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+  - main # Adjust this to match your default branch name
+
+pool:
+  vmImage: 'ubuntu-latest' # Playwright runs efficiently on Linux agents
+
+steps:
+  # 1. Install Node.js environment
+  - task: UseNode@1
+    inputs:
+      version: '20.x' # Use your project's Node version
+    displayName: 'Install Node.js'
+
+  # 2. Install Project Dependencies
+  - script: npm ci
+    displayName: 'Install Dependencies (npm ci)'
+
+  # 3. Install Playwright Browsers and System Dependencies
+  - script: npx playwright install --with-deps
+    displayName: 'Install Playwright Browsers'
+
+  # 4. Run Playwright Tests
+  - script: npx playwright test
+    displayName: 'Run Playwright Tests'
+    env:
+      CI: 'true' # Ensures Playwright runs in headless mode optimized for CI environments
+
+  # 5. Publish Test Results (Optional: Displays results in the Azure DevOps Pipeline dashboard)
+  - task: PublishTestResults@2
+    displayName: 'Publish Test Results'
+    condition: succeededOrFailed() # Runs even if previous test cases fail
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: '**/results.xml' # Ensure you configure a JUnit reporter in playwright.config.ts
+
+  # 6. Publish HTML Report Artifacts (Optional: Allows downloading the visual HTML report)
+  - task: PublishPipelineArtifact@1
+    displayName: 'Publish Playwright HTML Report'
+    condition: succeededOrFailed()
+    inputs:
+      targetPath: 'playwright-report/'
+      artifact: 'playwright-report'
+      publishLocation: 'pipeline'
+
