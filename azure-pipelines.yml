@@ -19,8 +19,8 @@ steps:
   - script: npx playwright install --with-deps
     displayName: 'Install Playwright Browsers'
 
-    env:
-      PLAYWRIGHT_USER: $(APP_USERNAME2)
+    
+      
      
 
   # 4. Run Playwright Tests
@@ -28,7 +28,8 @@ steps:
     displayName: 'Run Playwright Tests'
     env:
       CI: 'true' # Ensures Playwright runs in headless mode optimized for CI environments
-
+      PLAYWRIGHT_USER: $(APP_USERNAME)
+      PLAYWRIGHT_PASSWORD: $(APP_PASSWORD)
   # 5. Publish Test Results (Optional: Displays results in the Azure DevOps Pipeline dashboard)
   - task: PublishTestResults@2
     displayName: 'Publish Test Results'
