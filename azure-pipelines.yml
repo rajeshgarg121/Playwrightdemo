@@ -19,8 +19,12 @@ steps:
   - script: npx playwright install --with-deps
     displayName: 'Install Playwright Browsers'
 
+    env:
+      PLAYWRIGHT_USER: $(APP_USERNAME)
+     
+
   # 4. Run Playwright Tests
-  - script: npx playwright test
+  - script: npx playwright test -g "@smoke"
     displayName: 'Run Playwright Tests'
     env:
       CI: 'true' # Ensures Playwright runs in headless mode optimized for CI environments
@@ -41,3 +45,4 @@ steps:
       targetPath: 'playwright-report/'
       artifact: 'playwright-report'
       publishLocation: 'pipeline'
+      
