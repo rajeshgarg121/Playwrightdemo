@@ -24,7 +24,7 @@ steps:
      
 
   # 4. Run Playwright Tests
-  - script: npx playwright test -g "@smoke"
+  - script: npx playwright test
     displayName: 'Run Playwright Tests'
     env:
       CI: 'true' # Ensures Playwright runs in headless mode optimized for CI environments
