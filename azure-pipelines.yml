@@ -3,7 +3,8 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-latest' # Playwright runs efficiently on Linux agents
-
+variables:
+  - group: 'global_secrets'
 steps:
   # 1. Install Node.js environment
   - task: UseNode@1
