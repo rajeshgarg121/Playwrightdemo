@@ -1,5 +1,5 @@
 trigger:
-  - main # Adjust this to match your default branch name
+  - none # Adjust this to match your default branch name
 
 pool:
   vmImage: 'ubuntu-latest' # Playwright runs efficiently on Linux agents
@@ -31,7 +31,7 @@ steps:
     condition: succeededOrFailed() # Runs even if previous test cases fail
     inputs:
       testResultsFormat: 'JUnit'
-      testResultsFiles: '**/results.xml' # Ensure you configure a JUnit reporter in playwright.config.ts
+      testResultsFiles: '**/junit-report.xml' # Ensure you configure a JUnit reporter in playwright.config.ts
 
   # 6. Publish HTML Report Artifacts (Optional: Allows downloading the visual HTML report)
   - task: PublishPipelineArtifact@1
