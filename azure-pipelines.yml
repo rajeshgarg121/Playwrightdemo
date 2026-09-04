@@ -20,7 +20,7 @@ steps:
     displayName: 'Install Playwright Browsers'
 
     env:
-      PLAYWRIGHT_USER: $(APP_USERNAME)
+      PLAYWRIGHT_USER: $(APP_USERNAME2)
      
 
   # 4. Run Playwright Tests
