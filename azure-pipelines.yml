@@ -31,6 +31,8 @@ steps:
       CI: 'true' # Ensures Playwright runs in headless mode optimized for CI environments
       PLAYWRIGHT_USER: $(APP_USERNAME)
       PLAYWRIGHT_PASSWORD: $(APP_PASSWORD)
+      PLAYWRIGHT_INVALID_PASSWORD: $(APP_INVALID_PASSWORD)
+      PLAYWRIGHT_INVALID_USERNAME: $(APP_INVALID_USERNAME)
   # 5. Publish Test Results (Optional: Displays results in the Azure DevOps Pipeline dashboard)
   - task: PublishTestResults@2
     displayName: 'Publish Test Results'
