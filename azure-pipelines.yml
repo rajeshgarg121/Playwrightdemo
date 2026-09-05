@@ -1,8 +1,8 @@
 trigger:
   - none # Adjust this to match your default branch name
 schedules:
-- cron: '30 15 * * *'  # Runs at 19:30 IST every Saturday
-  displayName: every sat 7:30 run
+- cron: '12 18 * * *'  # Runs at 19:30 IST every Saturday
+  displayName: every sat 23:42 run
   branches:
     include:
     - main
