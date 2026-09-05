@@ -1,12 +1,11 @@
 trigger:
   - none # Adjust this to match your default branch name
 schedules:
-- cron: '46 14 * * 6'  # Runs at 19:30 IST every Saturday
+- cron: '30 15 * * *'  # Runs at 19:30 IST every Saturday
   displayName: every sat 7:30 run
   branches:
     include:
     - main
-  always: true
 
 pool:
   vmImage: 'ubuntu-latest' # Playwright runs efficiently on Linux agents
